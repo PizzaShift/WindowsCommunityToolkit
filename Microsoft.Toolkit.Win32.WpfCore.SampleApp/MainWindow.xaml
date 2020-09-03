@@ -12,9 +12,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Button
-            x:Name="ButtonShowToast"
-            Content="Show toast"
-            Click="ButtonShowToast_Click"/>
+        <StackPanel Margin="20">
+            <Button
+                x:Name="ButtonShowToast"
+                Content="Show toast"
+                Click="ButtonShowToast_Click"/>
+            <Button
+                x:Name="ButtonClearToasts"
+                Content="Clear toasts"
+                Click="ButtonClearToasts_Click"
+                Margin="0,12,0,0"/>
+        </StackPanel>
     </Grid>
 </Window>

@@ -33,7 +33,7 @@ namespace Microsoft.Toolkit.Uwp.Samples.BackgroundTasks
 
             // Create & show toast notification
             var toastNotification = new ToastNotification(toastContent.GetXml());
-            ToastNotificationManagerCompat.CreateToastNotifier().Show(toastNotification);
+            NotificationManager.CreateToastNotifier().Show(toastNotification);
         }
     }
 }

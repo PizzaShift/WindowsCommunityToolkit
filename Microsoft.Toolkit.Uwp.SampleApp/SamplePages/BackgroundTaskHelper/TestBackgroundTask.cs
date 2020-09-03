@@ -11,7 +11,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
     {
         public void Run(IBackgroundTaskInstance taskInstance)
         {
-            new ToastContentBuilder()
+            new NotificationBuilder()
                 .AddText("New toast notification (BackgroundTaskHelper).")
                 .Show();
         }

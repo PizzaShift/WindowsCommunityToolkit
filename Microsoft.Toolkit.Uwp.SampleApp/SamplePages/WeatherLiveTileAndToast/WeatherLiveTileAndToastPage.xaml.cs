@@ -29,7 +29,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 
         public static ToastContent GenerateToastContent()
         {
-            ToastContentBuilder builder = new ToastContentBuilder();
+            NotificationBuilder builder = new NotificationBuilder();
 
             // Include launch string so we know what to open when user clicks toast
             builder.AddToastActivationInfo("action=viewForecast&zip=98008", ToastActivationType.Foreground);
@@ -290,7 +290,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 
         private void PopToast()
         {
-            ToastNotificationManagerCompat.CreateToastNotifier().Show(new ToastNotification(_toastContent.GetXml()));
+            NotificationManager.CreateToastNotifier().Show(new ToastNotification(_toastContent.GetXml()));
         }
 
         private void Initialize()

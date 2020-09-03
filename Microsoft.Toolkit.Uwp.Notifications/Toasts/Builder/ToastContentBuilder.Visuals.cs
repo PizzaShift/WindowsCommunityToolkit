@@ -17,19 +17,19 @@ namespace Microsoft.Toolkit.Uwp.Notifications
     /// <summary>
     /// Builder class used to create <see cref="ToastContent"/>
     /// </summary>
-    public partial class ToastContentBuilder
+    public partial class NotificationBuilder
     {
         private ToastVisual Visual
         {
             get
             {
-                if (Content.Visual == null)
+                if (_content.Visual == null)
                 {
-                    Content.Visual = new ToastVisual();
-                    Content.Visual.BindingGeneric = new ToastBindingGeneric();
+                    _content.Visual = new ToastVisual();
+                    _content.Visual.BindingGeneric = new ToastBindingGeneric();
                 }
 
-                return Content.Visual;
+                return _content.Visual;
             }
         }
 
@@ -134,8 +134,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// </summary>
         /// <param name="text">Text to be displayed as Attribution Text</param>
         /// <param name="language">The target locale of the XML payload, specified as a BCP-47 language tags such as "en-US" or "fr-FR".</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddAttributionText(string text, string language = default(string))
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddAttributionText(string text, string language = default(string))
         {
             AttributionText = new ToastGenericAttributionText()
             {
@@ -157,8 +157,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="hintCrop">Specify how the image should be cropped.</param>
         /// <param name="alternateText">A description of the image, for users of assistive technologies.</param>
         /// <param name="addImageQuery">A value whether Windows is allowed to append a query string to the image URI supplied in the Tile notification.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddAppLogoOverride(Uri uri, ToastGenericAppLogoCrop? hintCrop = null, string alternateText = default(string), bool? addImageQuery = default(bool?))
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddAppLogoOverride(Uri uri, ToastGenericAppLogoCrop? hintCrop = null, string alternateText = default(string), bool? addImageQuery = default(bool?))
         {
             AppLogoOverrideUri = new ToastGenericAppLogo()
             {
@@ -189,8 +189,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="uri">The URI of the image. Can be from your application package, application data, or the internet. Internet images must be less than 200 KB in size.</param>
         /// <param name="alternateText">A description of the image, for users of assistive technologies.</param>
         /// <param name="addImageQuery">A value whether Windows is allowed to append a query string to the image URI supplied in the Tile notification.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddHeroImage(Uri uri, string alternateText = default(string), bool? addImageQuery = default(bool?))
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddHeroImage(Uri uri, string alternateText = default(string), bool? addImageQuery = default(bool?))
         {
             HeroImage = new ToastGenericHeroImage()
             {
@@ -218,8 +218,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="addImageQuery">A value whether Windows is allowed to append a query string to the image URI supplied in the Tile notification.</param>
         /// <param name="hintCrop">A value whether a margin is removed. images have an 8px margin around them.</param>
         /// <param name="hintRemoveMargin">the horizontal alignment of the image.This is only supported when inside an <see cref="AdaptiveSubgroup"/>.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddInlineImage(Uri uri, string alternateText = default(string), bool? addImageQuery = default(bool?), AdaptiveImageCrop? hintCrop = null, bool? hintRemoveMargin = default(bool?))
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddInlineImage(Uri uri, string alternateText = default(string), bool? addImageQuery = default(bool?), AdaptiveImageCrop? hintCrop = null, bool? hintRemoveMargin = default(bool?))
         {
             var inlineImage = new AdaptiveImage()
             {
@@ -257,9 +257,9 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="isIndeterminate">Determine if the progress bar value should be indeterminate. Default to false.</param>
         /// <param name="valueStringOverride">An optional string to be displayed instead of the default percentage string. If this isn't provided, something like "70%" will be displayed.</param>
         /// <param name="status">A status string which is displayed underneath the progress bar. This string should reflect the status of the operation, like "Downloading..." or "Installing...". Default to empty.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
         /// <remarks>More info at: https://docs.microsoft.com/en-us/windows/uwp/design/shell/tiles-and-notifications/toast-progress-bar </remarks>
-        public ToastContentBuilder AddProgressBar(string title = default(string), double? value = null, bool isIndeterminate = false, string valueStringOverride = default(string), string status = default(string))
+        public NotificationBuilder AddProgressBar(string title = default(string), double? value = null, bool isIndeterminate = false, string valueStringOverride = default(string), string status = default(string))
         {
             int index = VisualChildren.Count(c => c is AdaptiveProgressBar);
 
@@ -322,11 +322,11 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="language">
         /// The target locale of the XML payload, specified as a BCP-47 language tags such as "en-US" or "fr-FR". The locale specified here overrides any other specified locale, such as that in binding or visual.
         /// </param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
         /// <exception cref="InvalidOperationException">Throws when attempting to add/reserve more than 4 lines on a single toast. </exception>
         /// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="hintMaxLines"/> value is larger than 2. </exception>
         /// <remarks>More info at: https://docs.microsoft.com/en-us/windows/uwp/design/shell/tiles-and-notifications/adaptive-interactive-toasts#text-elements</remarks>
-        public ToastContentBuilder AddText(string text, AdaptiveTextStyle? hintStyle = null, bool? hintWrap = default(bool?), int? hintMaxLines = default(int?), int? hintMinLines = default(int?), AdaptiveTextAlign? hintAlign = null, string language = default(string))
+        public NotificationBuilder AddText(string text, AdaptiveTextStyle? hintStyle = null, bool? hintWrap = default(bool?), int? hintMaxLines = default(int?), int? hintMinLines = default(int?), AdaptiveTextAlign? hintAlign = null, string language = default(string))
         {
             int lineCount = GetCurrentTextLineCount();
             if (GetCurrentTextLineCount() == 4)
@@ -386,8 +386,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// Add a visual element to the toast.
         /// </summary>
         /// <param name="child">An instance of a class that implement <see cref="IToastBindingGenericChild"/>.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddVisualChild(IToastBindingGenericChild child)
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddVisualChild(IToastBindingGenericChild child)
         {
             VisualChildren.Add(child);
 

@@ -15,9 +15,9 @@ namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
         protected override void OnStartup(StartupEventArgs e)
         {
             // Listen to toast notification activations
-            ToastNotificationManagerCompat.OnActivated += this.ToastNotificationManagerCompat_OnActivated;
+            NotificationManager.OnActivated += this.ToastNotificationManagerCompat_OnActivated;
 
-            if (!ToastNotificationManagerCompat.WasCurrentProcessToastActivated())
+            if (!NotificationManager.WasCurrentProcessToastActivated())
             {
                 new MainWindow().Show();
             }
@@ -53,7 +53,7 @@ namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
         protected override void OnExit(ExitEventArgs e)
         {
             // If your app has an installer, you should call this when your app is uninstalled. Otherwise, if your app is a "portable app" and you no longer need notifications while the app is closed, you can call this upon exit.
-            ToastNotificationManagerCompat.Uninstall();
+            NotificationManager.Uninstall();
         }
     }
 }

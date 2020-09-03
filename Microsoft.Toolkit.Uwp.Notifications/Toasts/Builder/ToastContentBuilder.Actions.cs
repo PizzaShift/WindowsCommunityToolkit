@@ -14,18 +14,18 @@ namespace Microsoft.Toolkit.Uwp.Notifications
     /// <summary>
     /// Builder class used to create <see cref="ToastContent"/>
     /// </summary>
-    public partial class ToastContentBuilder
+    public partial class NotificationBuilder
     {
         private IToastActions Actions
         {
             get
             {
-                if (Content.Actions == null)
+                if (_content.Actions == null)
                 {
-                    Content.Actions = new ToastActionsCustom();
+                    _content.Actions = new ToastActionsCustom();
                 }
 
-                return Content.Actions;
+                return _content.Actions;
             }
         }
 
@@ -52,8 +52,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="activationType">Type of activation this button will use when clicked. Defaults to Foreground.</param>
         /// <param name="arguments">App-defined string of arguments that the app can later retrieve once it is activated when the user clicks the button.</param>
         /// <param name="imageUri">Optional image icon for the button to display (required for buttons adjacent to inputs like quick reply).</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddButton(string content, ToastActivationType activationType, string arguments, Uri imageUri = default(Uri))
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddButton(string content, ToastActivationType activationType, string arguments, Uri imageUri = default(Uri))
         {
             // Add new button
             ToastButton button = new ToastButton(content, arguments)
@@ -73,8 +73,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// Add a button to the current toast.
         /// </summary>
         /// <param name="button">An instance of class that implement <see cref="IToastButton"/> for the button that will be used on the toast.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddButton(IToastButton button)
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddButton(IToastButton button)
         {
             // List has max 5 buttons
             if (ButtonList.Count == 5)
@@ -95,8 +95,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="activationType">Type of activation this button will use when clicked. Defaults to Foreground.</param>
         /// <param name="arguments">App-defined string of arguments that the app can later retrieve once it is activated when the user clicks the button.</param>
         /// <param name="imageUri">An optional image icon for the button to display (required for buttons adjacent to inputs like quick reply)</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddButton(string textBoxId, string content, ToastActivationType activationType, string arguments, Uri imageUri = default(Uri))
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddButton(string textBoxId, string content, ToastActivationType activationType, string arguments, Uri imageUri = default(Uri))
         {
             // Add new button
             ToastButton button = new ToastButton(content, arguments)
@@ -119,8 +119,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="id">Required ID property so that developers can retrieve user input once the app is activated.</param>
         /// <param name="placeHolderContent">Placeholder text to be displayed on the text box when the user hasn't typed any text yet.</param>
         /// <param name="title">Title text to display above the text box.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddInputTextBox(string id, string placeHolderContent = default(string), string title = default(string))
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddInputTextBox(string id, string placeHolderContent = default(string), string title = default(string))
         {
             var inputTextBox = new ToastTextBox(id);
 
@@ -142,8 +142,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// </summary>
         /// <param name="id">Required ID property used so that developers can retrieve user input once the app is activated.</param>
         /// <param name="choices">List of choices that will be available for user to select.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddComboBox(string id, params (string comboBoxItemId, string comboBoxItemContent)[] choices)
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddComboBox(string id, params (string comboBoxItemId, string comboBoxItemContent)[] choices)
         {
             return AddComboBox(id, default(string), choices);
         }
@@ -154,8 +154,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="id">Required ID property used so that developers can retrieve user input once the app is activated.</param>
         /// <param name="defaultSelectionBoxItemId">Sets which item is selected by default, and refers to the Id property of <see cref="ToastSelectionBoxItem"/>. If you do not provide this or null, the default selection will be empty (user sees nothing).</param>
         /// <param name="choices">List of choices that will be available for user to select.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddComboBox(string id, string defaultSelectionBoxItemId, params (string comboBoxItemId, string comboBoxItemContent)[] choices)
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddComboBox(string id, string defaultSelectionBoxItemId, params (string comboBoxItemId, string comboBoxItemContent)[] choices)
         {
             return AddComboBox(id, default(string), defaultSelectionBoxItemId, choices);
         }
@@ -167,8 +167,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="title">Title text to display above the Combo Box.</param>
         /// <param name="defaultSelectionBoxItemId">Sets which item is selected by default, and refers to the Id property of <see cref="ToastSelectionBoxItem"/>. If you do not provide this or null, the default selection will be empty (user sees nothing).</param>
         /// <param name="choices">List of choices that will be available for user to select.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddComboBox(string id, string title, string defaultSelectionBoxItemId, params (string comboBoxItemId, string comboBoxItemContent)[] choices)
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddComboBox(string id, string title, string defaultSelectionBoxItemId, params (string comboBoxItemId, string comboBoxItemContent)[] choices)
         {
             return AddComboBox(id, title, defaultSelectionBoxItemId, choices as IEnumerable<(string, string)>);
         }
@@ -180,8 +180,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <param name="title">Title text to display above the Combo Box.</param>
         /// <param name="defaultSelectionBoxItemId">Sets which item is selected by default, and refers to the Id property of <see cref="ToastSelectionBoxItem"/>. If you do not provide this or null, the default selection will be empty (user sees nothing).</param>
         /// <param name="choices">List of choices that will be available for user to select.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddComboBox(string id, string title, string defaultSelectionBoxItemId, IEnumerable<(string comboBoxItemId, string comboBoxItemContent)> choices)
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddComboBox(string id, string title, string defaultSelectionBoxItemId, IEnumerable<(string comboBoxItemId, string comboBoxItemContent)> choices)
         {
             var box = new ToastSelectionBox(id);
 
@@ -208,8 +208,8 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// Add an input option to the Toast.
         /// </summary>
         /// <param name="input">An instance of a class that implement <see cref="IToastInput"/> that will be used on the toast.</param>
-        /// <returns>The current instance of <see cref="ToastContentBuilder"/></returns>
-        public ToastContentBuilder AddToastInput(IToastInput input)
+        /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
+        public NotificationBuilder AddToastInput(IToastInput input)
         {
             InputList.Add(input);
 

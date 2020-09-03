@@ -24,7 +24,7 @@ namespace Microsoft.Toolkit.Uwp.Notifications
     /// <summary>
     /// Provides access to sending and managing toast notifications. Works for all types of apps, even Win32 non-MSIX/sparse apps.
     /// </summary>
-    public static class ToastNotificationManagerCompat
+    public static class NotificationManager
     {
 #if WIN32
         private const string TOAST_ACTIVATED_LAUNCH_ARG = "-ToastActivated";
@@ -100,7 +100,7 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         private static string _win32Aumid;
         private static string _clsid;
 
-        static ToastNotificationManagerCompat()
+        static NotificationManager()
         {
             Initialize();
         }
@@ -486,7 +486,7 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// Creates a toast notifier.
         /// </summary>
         /// <returns><see cref="ToastNotifier"/></returns>
-        public static ToastNotifier CreateToastNotifier()
+        internal static ToastNotifier CreateToastNotifier()
         {
 #if WIN32
             if (DesktopBridgeHelpers.HasIdentity())
@@ -505,7 +505,7 @@ namespace Microsoft.Toolkit.Uwp.Notifications
         /// <summary>
         /// Gets the <see cref="ToastNotificationHistoryCompat"/> object.
         /// </summary>
-        public static ToastNotificationHistoryCompat History
+        internal static ToastNotificationHistoryCompat History
         {
             get
             {
@@ -515,6 +515,51 @@ namespace Microsoft.Toolkit.Uwp.Notifications
                 return new ToastNotificationHistoryCompat(null);
 #endif
             }
+        }
+
+        /// <summary>
+        /// Removes all notifications sent by this app from action center.
+        /// </summary>
+        public static void Clear()
+        {
+            History.Clear();
+        }
+
+        /// <summary>
+        /// Gets all notifications sent by this app that are currently still in Action Center.
+        /// </summary>
+        /// <returns>A collection of toasts.</returns>
+        public static IReadOnlyList<ToastNotification> GetNotifications()
+        {
+            return History.GetHistory();
+        }
+
+        /// <summary>
+        /// Removes an individual toast, with the specified tag label, from action center.
+        /// </summary>
+        /// <param name="tag">The tag label of the toast notification to be removed.</param>
+        public static void Remove(string tag)
+        {
+            History.Remove(tag);
+        }
+
+        /// <summary>
+        /// Removes a toast notification from the action using the notification's tag and group labels.
+        /// </summary>
+        /// <param name="tag">The tag label of the toast notification to be removed.</param>
+        /// <param name="group">The group label of the toast notification to be removed.</param>
+        public static void Remove(string tag, string group)
+        {
+            History.Remove(tag, group);
+        }
+
+        /// <summary>
+        /// Removes a group of toast notifications, identified by the specified group label, from action center.
+        /// </summary>
+        /// <param name="group">The group label of the toast notifications to be removed.</param>
+        public static void RemoveGroup(string group)
+        {
+            History.RemoveGroup(group);
         }
 
         /// <summary>

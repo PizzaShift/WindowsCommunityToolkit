@@ -28,7 +28,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 
         public static ToastContent GenerateToastContent()
         {
-            var builder = new ToastContentBuilder().SetToastScenario(ToastScenario.Reminder)
+            var builder = new NotificationBuilder().SetToastScenario(ToastScenario.Reminder)
                 .AddToastActivationInfo("action=viewEvent&eventId=1983", ToastActivationType.Foreground)
                 .AddText("Adaptive Tiles Meeting")
                 .AddText("Conf Room 2001 / Building 135")
@@ -54,7 +54,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 
         private void PopToast()
         {
-            ToastNotificationManagerCompat.CreateToastNotifier().Show(new ToastNotification(_toastContent.GetXml()));
+            NotificationManager.CreateToastNotifier().Show(new ToastNotification(_toastContent.GetXml()));
         }
 
         private void Initialize()

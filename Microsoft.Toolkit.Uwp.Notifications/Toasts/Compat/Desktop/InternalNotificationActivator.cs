@@ -18,7 +18,7 @@ namespace Microsoft.Toolkit.Uwp.Notifications.Internal
         /// <inheritdoc/>
         public void Activate(string appUserModelId, string invokedArgs, InternalNotificationActivator.NOTIFICATION_USER_INPUT_DATA[] data, uint dataCount)
         {
-            ToastNotificationManagerCompat.OnActivatedInternal(invokedArgs, data, appUserModelId);
+            NotificationManager.OnActivatedInternal(invokedArgs, data, appUserModelId);
         }
 
         /// <summary>
