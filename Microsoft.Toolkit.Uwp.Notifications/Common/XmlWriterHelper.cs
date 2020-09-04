@@ -12,7 +12,7 @@ using System.Reflection;
 
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     internal static class XmlWriterHelper
     {

@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// The binding element contains the visual content for a specific Tile size.

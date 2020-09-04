@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// A button that the user can click on a Toast notification.

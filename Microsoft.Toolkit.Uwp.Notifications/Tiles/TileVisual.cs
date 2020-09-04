@@ -4,9 +4,9 @@
 
 using System;
 using System.Linq;
-using Microsoft.Toolkit.Uwp.Notifications.Adaptive.Elements;
+using Microsoft.UI.Notifications.Adaptive.Elements;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// Contains multiple binding child elements, each of which defines a Tile.

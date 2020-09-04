@@ -7,7 +7,7 @@ using System;
 
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// Exception returned when invalid notification content is provided.

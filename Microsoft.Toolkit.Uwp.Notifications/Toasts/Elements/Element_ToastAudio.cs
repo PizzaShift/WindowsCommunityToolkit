@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     [NotificationXmlElement("audio")]
     internal sealed class Element_ToastAudio

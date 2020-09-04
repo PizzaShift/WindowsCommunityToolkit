@@ -6,9 +6,9 @@
 using System.Collections.Generic;
 #endif
 using System;
-using Microsoft.Toolkit.Uwp.Notifications.Adaptive.Elements;
+using Microsoft.UI.Notifications.Adaptive.Elements;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// New in Creators Update: A progress bar. Only supported on toasts on Desktop, build 15007 or newer.

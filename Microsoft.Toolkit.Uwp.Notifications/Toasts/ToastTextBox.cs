@@ -4,7 +4,7 @@
 
 using System;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// A text box control on the Toast that a user can type text into.

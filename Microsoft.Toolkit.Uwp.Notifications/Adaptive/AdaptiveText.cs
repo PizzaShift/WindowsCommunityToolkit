@@ -5,9 +5,9 @@
 #if WINRT
 using System.Collections.Generic;
 #endif
-using Microsoft.Toolkit.Uwp.Notifications.Adaptive.Elements;
+using Microsoft.UI.Notifications.Adaptive.Elements;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// An adaptive text element.

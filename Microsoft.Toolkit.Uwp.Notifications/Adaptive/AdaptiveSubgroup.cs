@@ -4,9 +4,9 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.Toolkit.Uwp.Notifications.Adaptive.Elements;
+using Microsoft.UI.Notifications.Adaptive.Elements;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// Subgroups are vertical columns that can contain text and images. Supported on Tiles since RTM. Supported on Toasts since Anniversary Update.

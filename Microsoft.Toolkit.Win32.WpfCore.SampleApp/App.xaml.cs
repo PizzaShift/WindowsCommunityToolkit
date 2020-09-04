@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
-using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.UI.Notifications;
 
 namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
 {

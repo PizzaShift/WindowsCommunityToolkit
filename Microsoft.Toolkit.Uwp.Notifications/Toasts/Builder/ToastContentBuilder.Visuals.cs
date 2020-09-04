@@ -11,7 +11,7 @@ using System.Text;
 using Windows.UI.Notifications;
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
 #if !WINRT
     /// <summary>

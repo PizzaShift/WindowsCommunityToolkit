@@ -9,7 +9,7 @@ using System.Text;
 using Windows.Data.Xml.Dom;
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     internal abstract class BaseElement
     {

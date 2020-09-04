@@ -7,7 +7,7 @@ using System;
 
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     internal sealed class NotificationXmlElementAttribute : Attribute
     {

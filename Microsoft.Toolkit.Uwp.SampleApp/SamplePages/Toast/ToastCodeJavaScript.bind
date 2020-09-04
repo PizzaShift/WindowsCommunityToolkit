@@ -1,27 +1,27 @@
 var generateToastContent = function () {
-    var toastButtonSnooze = new Microsoft.Toolkit.Uwp.Notifications.ToastButtonSnooze();
+    var toastButtonSnooze = new Microsoft.UI.Notifications.ToastButtonSnooze();
     toastButtonSnooze.selectionBoxId = "snoozeTime";
 
-    var toastButtonDismiss = new Microsoft.Toolkit.Uwp.Notifications.ToastButtonDismiss();
+    var toastButtonDismiss = new Microsoft.UI.Notifications.ToastButtonDismiss();
 
-    var toastSelectionBox = new Microsoft.Toolkit.Uwp.Notifications.ToastSelectionBox("snoozeTime");
+    var toastSelectionBox = new Microsoft.UI.Notifications.ToastSelectionBox("snoozeTime");
     toastSelectionBox.defaultSelectionBoxItemId = "15";
-    toastSelectionBox.items.push(new Microsoft.Toolkit.Uwp.Notifications.ToastSelectionBoxItem("1", "1 minute"));
-    toastSelectionBox.items.push(new Microsoft.Toolkit.Uwp.Notifications.ToastSelectionBoxItem("15", "15 minutes"));
-    toastSelectionBox.items.push(new Microsoft.Toolkit.Uwp.Notifications.ToastSelectionBoxItem("60", "1 hour"));
-    toastSelectionBox.items.push(new Microsoft.Toolkit.Uwp.Notifications.ToastSelectionBoxItem("240", "4 hours"));
-    toastSelectionBox.items.push(new Microsoft.Toolkit.Uwp.Notifications.ToastSelectionBoxItem("1440", "1 day"));
+    toastSelectionBox.items.push(new Microsoft.UI.Notifications.ToastSelectionBoxItem("1", "1 minute"));
+    toastSelectionBox.items.push(new Microsoft.UI.Notifications.ToastSelectionBoxItem("15", "15 minutes"));
+    toastSelectionBox.items.push(new Microsoft.UI.Notifications.ToastSelectionBoxItem("60", "1 hour"));
+    toastSelectionBox.items.push(new Microsoft.UI.Notifications.ToastSelectionBoxItem("240", "4 hours"));
+    toastSelectionBox.items.push(new Microsoft.UI.Notifications.ToastSelectionBoxItem("1440", "1 day"));
 
-    var toastVisual = new Microsoft.Toolkit.Uwp.Notifications.ToastVisual();
-    var bindingGeneric = new Microsoft.Toolkit.Uwp.Notifications.ToastBindingGeneric();
+    var toastVisual = new Microsoft.UI.Notifications.ToastVisual();
+    var bindingGeneric = new Microsoft.UI.Notifications.ToastBindingGeneric();
 
-    var adaptiveText1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptiveText1 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptiveText1.text = "Adaptive Tiles Meeting";
 
-     var adaptiveText2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+     var adaptiveText2 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptiveText2.text = "Conf Room 2001 / Building 135";
 
-     var adaptiveText3 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+     var adaptiveText3 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptiveText3.text = "10:00 AM - 10:30 AM";
 
     bindingGeneric.children.push(adaptiveText1);
@@ -30,15 +30,15 @@ var generateToastContent = function () {
 
     toastVisual.bindingGeneric = bindingGeneric;
 
-    var toastActions = new Microsoft.Toolkit.Uwp.Notifications.ToastActionsCustom();
+    var toastActions = new Microsoft.UI.Notifications.ToastActionsCustom();
     toastActions.inputs.push(toastSelectionBox);
     toastActions.buttons.push(toastButtonSnooze);
     toastActions.buttons.push(toastButtonDismiss);
 
-    var content = new Microsoft.Toolkit.Uwp.Notifications.ToastContent();
+    var content = new Microsoft.UI.Notifications.ToastContent();
 
     content.launch = "action=viewEvent&eventId=1983";
-    content.scenario = Microsoft.Toolkit.Uwp.Notifications.ToastScenario.reminder;
+    content.scenario = Microsoft.UI.Notifications.ToastScenario.reminder;
     content.visual = toastVisual;
     content.actions = toastActions;
 

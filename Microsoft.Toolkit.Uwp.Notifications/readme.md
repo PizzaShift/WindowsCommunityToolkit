@@ -1,14 +1,14 @@
 Welcome to the Notifications section of the toolkit! This contains the Notifications library, including the object model for tile, toast, and badge XML (previously called NotificationsExtensions).
 
 ## Where should I add new code?
-Any code for generating notifications should be written in the Microsoft.Toolkit.Uwp.Notifications project.
+Any code for generating notifications should be written in the Microsoft.UI.Notifications project.
 
 If there's UWP-specific code, use the appropriate `#ifdef`, `WINDOWS_UWP` or `WINRT`.
 
 ## What are all the projects for?
 There's two notification projects...
- - Microsoft.Toolkit.Uwp.Notifications
- - Microsoft.Toolkit.Uwp.Notifications.JavaScript
+ - Microsoft.UI.Notifications
+ - Microsoft.UI.Notifications.JavaScript
 
 The first project is where all the code is contained.
 

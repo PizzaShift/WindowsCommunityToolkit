@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     internal sealed class LimitedList<T> : IList<T>
     {

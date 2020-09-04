@@ -8,7 +8,7 @@ using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
 #if !WINRT
     /// <summary>

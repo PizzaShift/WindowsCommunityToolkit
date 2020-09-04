@@ -6,7 +6,7 @@
 using Windows.Data.Xml.Dom;
 #endif
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// Base notification content interface to retrieve notification Xml as a string.

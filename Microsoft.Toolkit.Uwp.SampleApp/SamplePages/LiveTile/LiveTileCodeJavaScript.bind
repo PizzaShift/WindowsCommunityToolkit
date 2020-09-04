@@ -4,25 +4,25 @@ var wide310x150Logo = new Windows.Foundation.Uri("ms-appx:///Assets/Wide310x150L
 var square310x310Logo = new Windows.Foundation.Uri("ms-appx:///Assets/Square310x310Logo.png");
 
 var generateTileBindingMedium = function (username, avatarLogoSource) {
-    var tileBinding = new Microsoft.Toolkit.Uwp.Notifications.TileBinding();
+    var tileBinding = new Microsoft.UI.Notifications.TileBinding();
 
-    tileBinding.content = new Microsoft.Toolkit.Uwp.Notifications.TileBindingContentAdaptive();
+    tileBinding.content = new Microsoft.UI.Notifications.TileBindingContentAdaptive();
 
-    tileBinding.content.peekImage = new Microsoft.Toolkit.Uwp.Notifications.TilePeekImage();
+    tileBinding.content.peekImage = new Microsoft.UI.Notifications.TilePeekImage();
     tileBinding.content.peekImage.source = avatarLogoSource;
-    tileBinding.content.peekImage.hintCrop = Microsoft.Toolkit.Uwp.Notifications.TilePeekImageCrop.Circle;
+    tileBinding.content.peekImage.hintCrop = Microsoft.UI.Notifications.TilePeekImageCrop.Circle;
 
-    tileBinding.content.textStacking = Microsoft.Toolkit.Uwp.Notifications.TileTextStacking.center;
+    tileBinding.content.textStacking = Microsoft.UI.Notifications.TileTextStacking.center;
 
-    var adaptativeText1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText1 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText1.text = "Hi,";
-    adaptativeText1.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.center;
-    adaptativeText1.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.base;
+    adaptativeText1.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.center;
+    adaptativeText1.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.base;
 
-    var adaptativeText2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText2 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText2.text = username;
-    adaptativeText2.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.center;
-    adaptativeText2.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.captionSubtle;
+    adaptativeText2.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.center;
+    adaptativeText2.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.captionSubtle;
 
     tileBinding.content.children.push(adaptativeText1);
     tileBinding.content.children.push(adaptativeText2);
@@ -31,27 +31,27 @@ var generateTileBindingMedium = function (username, avatarLogoSource) {
 };
 
 var generateTileBindingWide = function (username, avatarLogoSource) {
-    var tileBinding = new Microsoft.Toolkit.Uwp.Notifications.TileBinding();
+    var tileBinding = new Microsoft.UI.Notifications.TileBinding();
 
-    tileBinding.content = new Microsoft.Toolkit.Uwp.Notifications.TileBindingContentAdaptive();
+    tileBinding.content = new Microsoft.UI.Notifications.TileBindingContentAdaptive();
 
-    var group = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveGroup();
+    var group = new Microsoft.UI.Notifications.AdaptiveGroup();
 
-    var adaptativeSubgroup1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
+    var adaptativeSubgroup1 = new Microsoft.UI.Notifications.AdaptiveSubgroup();
     adaptativeSubgroup1.hintWeight = 33;
-    var adaptativeImage = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveImage();
+    var adaptativeImage = new Microsoft.UI.Notifications.AdaptiveImage();
     adaptativeImage.source = avatarLogoSource;
-    adaptativeImage.hintCrop = Microsoft.Toolkit.Uwp.Notifications.AdaptiveImageCrop.circle;
+    adaptativeImage.hintCrop = Microsoft.UI.Notifications.AdaptiveImageCrop.circle;
     adaptativeSubgroup1.children.push(adaptativeImage);
 
-    var adaptativeSubgroup2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
-    adaptativeSubgroup2.hintTextStacking = Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroupTextStacking.center;
-    var adaptativeText1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeSubgroup2 = new Microsoft.UI.Notifications.AdaptiveSubgroup();
+    adaptativeSubgroup2.hintTextStacking = Microsoft.UI.Notifications.AdaptiveSubgroupTextStacking.center;
+    var adaptativeText1 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText1.text = "Hi,";
-    adaptativeText1.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.title;
-    var adaptativeText2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    adaptativeText1.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.title;
+    var adaptativeText2 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText2.text = username;
-    adaptativeText2.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.subtitleSubtle;
+    adaptativeText2.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.subtitleSubtle;
     adaptativeSubgroup2.children.push(adaptativeText1);
     adaptativeSubgroup2.children.push(adaptativeText2);
 
@@ -64,40 +64,40 @@ var generateTileBindingWide = function (username, avatarLogoSource) {
 };
 
 var generateTileBindingLarge = function (username, avatarLogoSource) {
-    var tileBinding = new Microsoft.Toolkit.Uwp.Notifications.TileBinding();
+    var tileBinding = new Microsoft.UI.Notifications.TileBinding();
 
-    tileBinding.content = new Microsoft.Toolkit.Uwp.Notifications.TileBindingContentAdaptive();
-    tileBinding.content.textStacking = Microsoft.Toolkit.Uwp.Notifications.TileTextStacking.center;
+    tileBinding.content = new Microsoft.UI.Notifications.TileBindingContentAdaptive();
+    tileBinding.content.textStacking = Microsoft.UI.Notifications.TileTextStacking.center;
 
-    var group = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveGroup();
+    var group = new Microsoft.UI.Notifications.AdaptiveGroup();
 
-    var adaptativeSubgroup1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
+    var adaptativeSubgroup1 = new Microsoft.UI.Notifications.AdaptiveSubgroup();
     adaptativeSubgroup1.hintWeight = 1;
 
     // we surround the image by two subgroups so that it doesn't take the full width
-    var adaptativeSubgroup2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
+    var adaptativeSubgroup2 = new Microsoft.UI.Notifications.AdaptiveSubgroup();
     adaptativeSubgroup2.hintWeight = 2;
-    var adaptativeImage = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveImage();
+    var adaptativeImage = new Microsoft.UI.Notifications.AdaptiveImage();
     adaptativeImage.source = avatarLogoSource;
-    adaptativeImage.hintCrop = Microsoft.Toolkit.Uwp.Notifications.AdaptiveImageCrop.circle;
+    adaptativeImage.hintCrop = Microsoft.UI.Notifications.AdaptiveImageCrop.circle;
     adaptativeSubgroup2.children.push(adaptativeImage);
 
-    var adaptativeSubgroup3 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
+    var adaptativeSubgroup3 = new Microsoft.UI.Notifications.AdaptiveSubgroup();
     adaptativeSubgroup3.hintWeight = 1;
 
     group.children.push(adaptativeSubgroup1);
     group.children.push(adaptativeSubgroup2);
     group.children.push(adaptativeSubgroup3);
 
-    var adaptativeText1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText1 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText1.text = "Hi,";
-    adaptativeText1.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.center;
-    adaptativeText1.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.title;
+    adaptativeText1.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.center;
+    adaptativeText1.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.title;
 
-    var adaptativeText2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText2 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText2.text = username;
-    adaptativeText2.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.center;
-    adaptativeText2.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.subtitleSubtle;
+    adaptativeText2.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.center;
+    adaptativeText2.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.subtitleSubtle;
 
     tileBinding.content.children.push(group);
     tileBinding.content.children.push(adaptativeText1);
@@ -107,8 +107,8 @@ var generateTileBindingLarge = function (username, avatarLogoSource) {
 };
 
 var generateTileContent = function (username, avatarLogoSource) {
-    var tileContent = new Microsoft.Toolkit.Uwp.Notifications.TileContent();
-    tileContent.visual = new Microsoft.Toolkit.Uwp.Notifications.TileVisual();
+    var tileContent = new Microsoft.UI.Notifications.TileContent();
+    tileContent.visual = new Microsoft.UI.Notifications.TileVisual();
     tileContent.visual.tileMedium = generateTileBindingMedium(username, avatarLogoSource);
     tileContent.visual.tileWide = generateTileBindingWide(username, avatarLogoSource);
     tileContent.visual.tileLarge = generateTileBindingLarge(username, avatarLogoSource);

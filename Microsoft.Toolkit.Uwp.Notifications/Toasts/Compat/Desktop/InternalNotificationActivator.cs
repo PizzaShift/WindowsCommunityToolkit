@@ -7,7 +7,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Microsoft.Toolkit.Uwp.Notifications.Internal
+namespace Microsoft.UI.Notifications.Internal
 {
     /// <summary>
     /// Do not use this class. It must be public so that reflection can properly activate it, but consider it internal.

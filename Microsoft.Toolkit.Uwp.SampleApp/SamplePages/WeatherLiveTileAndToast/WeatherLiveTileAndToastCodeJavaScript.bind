@@ -14,29 +14,29 @@ var generateLargeSubgroup = function (day, image, high, low) {
 };
 
 var generateSubgroup = function (day, img, tempHi, tempLo) {
-    var adaptativeSubgroup = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
+    var adaptativeSubgroup = new Microsoft.UI.Notifications.AdaptiveSubgroup();
     adaptativeSubgroup.hintWeight = 1;
 
     // Day
-    var dayText = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var dayText = new Microsoft.UI.Notifications.AdaptiveText();
     dayText.text = day;
-    dayText.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.Center;
+    dayText.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.Center;
 
     // Image
-    var adaptativeImage = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveImage();
+    var adaptativeImage = new Microsoft.UI.Notifications.AdaptiveImage();
     adaptativeImage.source = img;
     adaptativeImage.hintRemoveMargin = true;
 
     // High temp
-    var highTempText = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var highTempText = new Microsoft.UI.Notifications.AdaptiveText();
     highTempText.text = tempHi + "�";
-    highTempText.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.Center;
+    highTempText.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.Center;
 
     // Low temp
-    var lowTempText = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var lowTempText = new Microsoft.UI.Notifications.AdaptiveText();
     lowTempText.text = tempLo + "�";
-    lowTempText.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.Center;
-    lowTempText.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.CaptionSubtle;
+    lowTempText.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.Center;
+    lowTempText.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.CaptionSubtle;
 
     adaptativeSubgroup.children.push(dayText);
     adaptativeSubgroup.children.push(adaptativeImage);
@@ -47,7 +47,7 @@ var generateSubgroup = function (day, img, tempHi, tempLo) {
 };
 
 var generateLegacyToastText = function (day, weatherEmoji, tempHi, tempLo) {
-    var adaptativeText = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText.text = `${day} ${weatherEmoji} ${tempHi}� / ${tempLo}�`;
     return adaptativeText;
 };
@@ -67,17 +67,17 @@ var isAdaptiveToastSupported = function () {
 
 var generateToastContent = function () {
     // start by constructing the visual portion of the toast
-    var binding = new Microsoft.Toolkit.Uwp.Notifications.ToastBindingGeneric();
+    var binding = new Microsoft.UI.Notifications.ToastBindingGeneric();
 
     // we'll always have this summary text on our toast notification
     // (it is required that your toast starts with a text element)
-    var adaptativeText1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText1 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText1.text = "Today will be mostly sunny with a high of 63 and a low of 42.";
     binding.children.push(adaptativeText1);
 
     // if Adaptive Toast Notifications are supported
     if (isAdaptiveToastSupported()) {
-        var adaptativeGroup = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveGroup();
+        var adaptativeGroup = new Microsoft.UI.Notifications.AdaptiveGroup();
 
         adaptativeGroup.children.push(generateSubgroup("Mon", "Mostly Cloudy.png", 63, 42));
         adaptativeGroup.children.push(generateSubgroup("Tue", "Cloudy.png", 57, 38));
@@ -88,10 +88,10 @@ var generateToastContent = function () {
         // use the rich Tile-like visual layout
         binding.children.push(adaptativeGroup);
     } else {
-        var adaptativeText2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+        var adaptativeText2 = new Microsoft.UI.Notifications.AdaptiveText();
         adaptativeText2.text = "Monday ? 63� / 42�";
 
-        var adaptativeText3 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+        var adaptativeText3 = new Microsoft.UI.Notifications.AdaptiveText();
         adaptativeText3.text = "Tuesday ? 57� / 38�"
 
         // we'll just add two simple lines of text
@@ -100,9 +100,9 @@ var generateToastContent = function () {
     }
 
     // construct the entire notification
-    var toastContent = new Microsoft.Toolkit.Uwp.Notifications.ToastContent();
+    var toastContent = new Microsoft.UI.Notifications.ToastContent();
 
-    toastContent.visual = new Microsoft.Toolkit.Uwp.Notifications.ToastVisual();
+    toastContent.visual = new Microsoft.UI.Notifications.ToastVisual();
     // use our binding from above
     toastContent.visual.bindingGeneric = binding;
     // set the base URI for the images, so we don't redundantly specify the entire path
@@ -115,21 +115,21 @@ var generateToastContent = function () {
 };
 
 var generateTileBindingSmall = function () {
-    var tileBinding = new Microsoft.Toolkit.Uwp.Notifications.TileBinding();
+    var tileBinding = new Microsoft.UI.Notifications.TileBinding();
 
-    tileBinding.content = new Microsoft.Toolkit.Uwp.Notifications.TileBindingContentAdaptive();
+    tileBinding.content = new Microsoft.UI.Notifications.TileBindingContentAdaptive();
 
-    tileBinding.content.textStacking = Microsoft.Toolkit.Uwp.Notifications.TileTextStacking.Center;
+    tileBinding.content.textStacking = Microsoft.UI.Notifications.TileTextStacking.Center;
 
-    var adaptativeText1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText1 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText1.text = "Mon";
-    adaptativeText1.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Body;
-    adaptativeText1.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.Center;
+    adaptativeText1.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.Body;
+    adaptativeText1.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.Center;
 
-    var adaptativeText2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText2 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText2.text = "63�";
-    adaptativeText2.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.Base;
-    adaptativeText2.hintAlign = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextAlign.Center;
+    adaptativeText2.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.Base;
+    adaptativeText2.hintAlign = Microsoft.UI.Notifications.AdaptiveTextAlign.Center;
 
     tileBinding.content.children.push(adaptativeText1);
     tileBinding.content.children.push(adaptativeText2);
@@ -138,11 +138,11 @@ var generateTileBindingSmall = function () {
 };
 
 var generateTileBindingMedium = function () {
-    var tileBinding = new Microsoft.Toolkit.Uwp.Notifications.TileBinding();
+    var tileBinding = new Microsoft.UI.Notifications.TileBinding();
 
-    tileBinding.content = new Microsoft.Toolkit.Uwp.Notifications.TileBindingContentAdaptive();
+    tileBinding.content = new Microsoft.UI.Notifications.TileBindingContentAdaptive();
 
-    var adaptativeGroup = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveGroup()
+    var adaptativeGroup = new Microsoft.UI.Notifications.AdaptiveGroup()
     adaptativeGroup.children.push(generateSubgroup("Mon", "Mostly Cloudy.png", 63, 42));
     adaptativeGroup.children.push(generateSubgroup("Tue", "Cloudy.png", 57, 38));
 
@@ -152,11 +152,11 @@ var generateTileBindingMedium = function () {
 };
 
 var generateTileBindingWide = function () {
-    var tileBinding = new Microsoft.Toolkit.Uwp.Notifications.TileBinding();
+    var tileBinding = new Microsoft.UI.Notifications.TileBinding();
 
-    tileBinding.content = new Microsoft.Toolkit.Uwp.Notifications.TileBindingContentAdaptive();
+    tileBinding.content = new Microsoft.UI.Notifications.TileBindingContentAdaptive();
 
-    var adaptativeGroup = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveGroup();
+    var adaptativeGroup = new Microsoft.UI.Notifications.AdaptiveGroup();
 
     adaptativeGroup.children.push(generateSubgroup("Mon", "Mostly Cloudy.png", 63, 42));
     adaptativeGroup.children.push(generateSubgroup("Tue", "Cloudy.png", 57, 38));
@@ -170,36 +170,36 @@ var generateTileBindingWide = function () {
 };
 
 var generateTileBindingLarge = function () {
-    var tileBinding = new Microsoft.Toolkit.Uwp.Notifications.TileBinding();
+    var tileBinding = new Microsoft.UI.Notifications.TileBinding();
 
-    tileBinding.content = new Microsoft.Toolkit.Uwp.Notifications.TileBindingContentAdaptive();
+    tileBinding.content = new Microsoft.UI.Notifications.TileBindingContentAdaptive();
 
     // 1. group
-    var adaptativeGroup1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveGroup();
+    var adaptativeGroup1 = new Microsoft.UI.Notifications.AdaptiveGroup();
 
-    var adaptativeSubgroup1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
+    var adaptativeSubgroup1 = new Microsoft.UI.Notifications.AdaptiveSubgroup();
     adaptativeSubgroup1.hintWeight = 30;
 
-    var adaptativeImage1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveImage();
+    var adaptativeImage1 = new Microsoft.UI.Notifications.AdaptiveImage();
     adaptativeImage1.source = "Mostly Cloudy.png";
     adaptativeSubgroup1.children.push(adaptativeImage1);
 
-    var adaptativeSubgroup2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveSubgroup();
+    var adaptativeSubgroup2 = new Microsoft.UI.Notifications.AdaptiveSubgroup();
 
-    var adaptativeText1 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText1 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText1.text = "Monday";
-    adaptativeText1.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.base;
+    adaptativeText1.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.base;
 
-    var adaptativeText2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText2 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText2.text = "63� / 42�";
 
-    var adaptativeText3 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText3 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText3.text = "20% chance of rain";
-    adaptativeText3.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.captionSubtle;
+    adaptativeText3.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.captionSubtle;
 
-    var adaptativeText4 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText();
+    var adaptativeText4 = new Microsoft.UI.Notifications.AdaptiveText();
     adaptativeText4.text = "Winds 5 mph NE";
-    adaptativeText4.hintStyle = Microsoft.Toolkit.Uwp.Notifications.AdaptiveTextStyle.captionSubtle;
+    adaptativeText4.hintStyle = Microsoft.UI.Notifications.AdaptiveTextStyle.captionSubtle;
 
     adaptativeSubgroup2.children.push(adaptativeText1);
     adaptativeSubgroup2.children.push(adaptativeText2);
@@ -212,10 +212,10 @@ var generateTileBindingLarge = function () {
     tileBinding.content.children.push(adaptativeGroup1);
 
     // 2. for spacing
-    tileBinding.content.children.push(new Microsoft.Toolkit.Uwp.Notifications.AdaptiveText());
+    tileBinding.content.children.push(new Microsoft.UI.Notifications.AdaptiveText());
 
     // 3. group
-    var adaptativeGroup2 = new Microsoft.Toolkit.Uwp.Notifications.AdaptiveGroup();
+    var adaptativeGroup2 = new Microsoft.UI.Notifications.AdaptiveGroup();
 
     adaptativeGroup2.children.push(generateLargeSubgroup("Tue", "Cloudy.png", 57, 38));
     adaptativeGroup2.children.push(generateLargeSubgroup("Wed", "Sunny.png", 59, 43));
@@ -228,8 +228,8 @@ var generateTileBindingLarge = function () {
 };
 
 var generateTileContent = function () {
-    var tileContent = new Microsoft.Toolkit.Uwp.Notifications.TileContent();
-    tileContent.visual = new Microsoft.Toolkit.Uwp.Notifications.TileVisual();
+    var tileContent = new Microsoft.UI.Notifications.TileContent();
+    tileContent.visual = new Microsoft.UI.Notifications.TileVisual();
 
     tileContent.visual.tileSmall = generateTileBindingSmall();
     tileContent.visual.tileMedium = generateTileBindingMedium();

@@ -3,7 +3,7 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
-using Microsoft.Toolkit.Uwp.Notifications;
+using Microsoft.UI.Notifications;
 using SimpleToasts;
 
 namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
@@ -38,7 +38,7 @@ namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
             var xml = SimpleToast.CreateXml("My old toast XML");
             NotificationBuilder.FromXmlDocument(xml).Show();
 
-            // The following ShowNotification APIs would never work for plain Win32 apps (SDK needs to update to Reunion, it was never supported in the first place), but it would work for UWP apps, and UWP apps should still be able to use them, including using the new builders with the old SDKs...
+            // The following ShowNotification APIs will work for UWP apps as they always have, but won't work for plain Win32 apps (they didn't work before, the SDK needs to update to Reunion). UWP apps should still be able to use these old SDKs, including using the new builders with the old SDKs...
             SimpleToast.ShowNotification("Sent through old platform APIs");
             SimpleToast.ShowNotification(new NotificationBuilder().AddText("Constructed with new, but sent through old").GetToastNotification());
             SimpleToast.ShowNotification(new NotificationBuilder().AddText("Constructed with new, but sent through old").GetXmlDocument());

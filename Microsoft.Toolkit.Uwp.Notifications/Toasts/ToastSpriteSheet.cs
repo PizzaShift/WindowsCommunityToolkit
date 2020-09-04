@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Microsoft.Toolkit.Uwp.Notifications.Adaptive.Elements;
+using Microsoft.UI.Notifications.Adaptive.Elements;
 
-namespace Microsoft.Toolkit.Uwp.Notifications
+namespace Microsoft.UI.Notifications
 {
     /// <summary>
     /// Specifies a sprite sheet. New in Fall Creators Update.
