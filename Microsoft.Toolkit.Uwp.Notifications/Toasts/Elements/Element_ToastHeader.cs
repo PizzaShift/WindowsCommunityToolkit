@@ -24,17 +24,17 @@ namespace Microsoft.UI.Notifications
         [NotificationXmlAttribute("protocolActivationTargetApplicationPfn")]
         public string ProtocolActivationTargetApplicationPfn { get; set; }
 
-        [NotificationXmlAttribute("afterActivationBehavior", ToastAfterActivationBehavior.Default)]
-        public ToastAfterActivationBehavior AfterActivationBehavior
+        [NotificationXmlAttribute("afterActivationBehavior", NotificationAfterActivationBehavior.Default)]
+        public NotificationAfterActivationBehavior AfterActivationBehavior
         {
             get
             {
-                return ToastAfterActivationBehavior.Default;
+                return NotificationAfterActivationBehavior.Default;
             }
 
             set
             {
-                if (value != ToastAfterActivationBehavior.Default)
+                if (value != NotificationAfterActivationBehavior.Default)
                 {
                     throw new InvalidOperationException("AfterActivationBehavior on ToastHeader only supports the Default value.");
                 }

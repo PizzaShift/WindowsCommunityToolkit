@@ -60,7 +60,7 @@ namespace Microsoft.UI.Notifications
         /// <summary>
         /// Gets or sets what activation type will be used when the user clicks the body of this Toast.
         /// </summary>
-        public ToastActivationType ActivationType { get; set; }
+        public NotificationActivationType ActivationType { get; set; }
 
         /// <summary>
         /// Gets or sets additional options relating to activation of the toast notification. Requires Creators Updated
@@ -120,7 +120,7 @@ namespace Microsoft.UI.Notifications
         {
             if (ActivationOptions != null)
             {
-                if (ActivationOptions.AfterActivationBehavior != ToastAfterActivationBehavior.Default)
+                if (ActivationOptions.AfterActivationBehavior != NotificationAfterActivationBehavior.Default)
                 {
                     throw new InvalidOperationException("ToastContent does not support a custom AfterActivationBehavior. Please ensure ActivationOptions.AfterActivationBehavior is set to Default.");
                 }

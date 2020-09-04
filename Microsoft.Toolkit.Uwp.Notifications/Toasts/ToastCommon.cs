@@ -7,7 +7,7 @@ namespace Microsoft.UI.Notifications
     /// <summary>
     /// Decides the type of activation that will be used when the user interacts with the Toast notification.
     /// </summary>
-    public enum ToastActivationType
+    public enum NotificationActivationType
     {
         /// <summary>
         /// Default value. Your foreground app is launched.
@@ -30,7 +30,7 @@ namespace Microsoft.UI.Notifications
     /// <summary>
     /// Specifies the behavior that the toast should use when the user takes action on the toast.
     /// </summary>
-    public enum ToastAfterActivationBehavior
+    public enum NotificationAfterActivationBehavior
     {
         /// <summary>
         /// Default behavior. The toast will be dismissed when the user takes action on the toast.

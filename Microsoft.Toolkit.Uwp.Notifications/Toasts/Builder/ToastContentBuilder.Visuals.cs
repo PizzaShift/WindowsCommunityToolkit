@@ -135,7 +135,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="text">Text to be displayed as Attribution Text</param>
         /// <param name="language">The target locale of the XML payload, specified as a BCP-47 language tags such as "en-US" or "fr-FR".</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddAttributionText(string text, string language = default(string))
+        public NotificationBuilder SetAttributionText(string text, string language = default(string))
         {
             AttributionText = new ToastGenericAttributionText()
             {
@@ -158,7 +158,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="alternateText">A description of the image, for users of assistive technologies.</param>
         /// <param name="addImageQuery">A value whether Windows is allowed to append a query string to the image URI supplied in the Tile notification.</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddAppLogoOverride(Uri uri, ToastGenericAppLogoCrop? hintCrop = null, string alternateText = default(string), bool? addImageQuery = default(bool?))
+        public NotificationBuilder SetAppLogoOverride(Uri uri, ToastGenericAppLogoCrop? hintCrop = null, string alternateText = default(string), bool? addImageQuery = default(bool?))
         {
             AppLogoOverrideUri = new ToastGenericAppLogo()
             {
@@ -190,7 +190,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="alternateText">A description of the image, for users of assistive technologies.</param>
         /// <param name="addImageQuery">A value whether Windows is allowed to append a query string to the image URI supplied in the Tile notification.</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddHeroImage(Uri uri, string alternateText = default(string), bool? addImageQuery = default(bool?))
+        public NotificationBuilder SetHeroImage(Uri uri, string alternateText = default(string), bool? addImageQuery = default(bool?))
         {
             HeroImage = new ToastGenericHeroImage()
             {

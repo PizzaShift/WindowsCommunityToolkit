@@ -21,7 +21,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddCustomTimeStamp(testCustomTimeStamp);
+            NotificationBuilder anotherReference = builder.SetCustomTimeStamp(testCustomTimeStamp);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -38,7 +38,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddHeader(testToastHeaderId, testToastTitle, testToastArguments);
+            NotificationBuilder anotherReference = builder.SetHeader(testToastHeaderId, testToastTitle, testToastArguments);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -52,11 +52,11 @@ namespace UnitTests.Notifications
         {
             // Arrange
             string testToastLaunchArugments = "Test Toast Launch Args";
-            ToastActivationType testToastActivationType = ToastActivationType.Background;
+            NotificationActivationType testToastActivationType = NotificationActivationType.Background;
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddToastActivationInfo(testToastLaunchArugments, testToastActivationType);
+            NotificationBuilder anotherReference = builder.SetLaunchArgs(testToastLaunchArugments, testToastActivationType);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -72,12 +72,12 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddToastActivationInfo(testToastLaunchArugments);
+            NotificationBuilder anotherReference = builder.SetLaunchArgs(testToastLaunchArugments);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
             Assert.AreEqual(testToastLaunchArugments, builder.Content.Launch);
-            Assert.AreEqual(ToastActivationType.Foreground, builder.Content.ActivationType);
+            Assert.AreEqual(NotificationActivationType.Foreground, builder.Content.ActivationType);
         }
 
         [TestMethod]
@@ -88,7 +88,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.SetToastDuration(testToastDuration);
+            NotificationBuilder anotherReference = builder.SetDuration(testToastDuration);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -103,7 +103,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.SetToastScenario(testToastScenario);
+            NotificationBuilder anotherReference = builder.SetScenario(testToastScenario);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -118,7 +118,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddAudio(testAudioUriSrc);
+            NotificationBuilder anotherReference = builder.SetAudio(testAudioUriSrc);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -135,7 +135,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddAudio(testAudioUriSrc, testToastAudioLoop, testToastAudioSilent);
+            NotificationBuilder anotherReference = builder.SetAudio(testAudioUriSrc, testToastAudioLoop, testToastAudioSilent);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -155,7 +155,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddAudio(audio);
+            NotificationBuilder anotherReference = builder.SetAudio(audio);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -170,7 +170,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddAttributionText(testAttributionText);
+            NotificationBuilder anotherReference = builder.SetAttributionText(testAttributionText);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -186,7 +186,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddAttributionText(testAttributionText, testAttributionTextLanguage);
+            NotificationBuilder anotherReference = builder.SetAttributionText(testAttributionText, testAttributionTextLanguage);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -202,7 +202,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddAppLogoOverride(testAppLogoUriSrc);
+            NotificationBuilder anotherReference = builder.SetAppLogoOverride(testAppLogoUriSrc);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -220,7 +220,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddAppLogoOverride(testAppLogoUriSrc, testCropOption, testLogoAltText, testLogoAddImageQuery);
+            NotificationBuilder anotherReference = builder.SetAppLogoOverride(testAppLogoUriSrc, testCropOption, testLogoAltText, testLogoAddImageQuery);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -238,7 +238,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddHeroImage(testHeroImageUriSrc);
+            NotificationBuilder anotherReference = builder.SetHeroImage(testHeroImageUriSrc);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -255,7 +255,7 @@ namespace UnitTests.Notifications
 
             // Act
             NotificationBuilder builder = new NotificationBuilder();
-            NotificationBuilder anotherReference = builder.AddHeroImage(testHeroImageUriSrc, testHeroImageAltText, testHeroImageAddImageQuery);
+            NotificationBuilder anotherReference = builder.SetHeroImage(testHeroImageUriSrc, testHeroImageAltText, testHeroImageAddImageQuery);
 
             // Assert
             Assert.AreSame(builder, anotherReference);
@@ -527,7 +527,7 @@ namespace UnitTests.Notifications
         {
             // Arrange
             string testButtonContent = "Test Button Content";
-            ToastActivationType testToastActivationType = ToastActivationType.Background;
+            NotificationActivationType testToastActivationType = NotificationActivationType.Background;
             string testButtonLaunchArgs = "Test Launch Args";
             NotificationBuilder builder = new NotificationBuilder();
 
@@ -548,7 +548,7 @@ namespace UnitTests.Notifications
         {
             // Arrange
             string testButtonContent = "Test Button Content";
-            ToastActivationType testToastActivationType = ToastActivationType.Background;
+            NotificationActivationType testToastActivationType = NotificationActivationType.Background;
             string testButtonLaunchArgs = "Test Launch Args";
             Uri testImageUriSrc = new Uri("C:/justatesturi.jpg");
 
@@ -573,7 +573,7 @@ namespace UnitTests.Notifications
             // Arrange
             string testInputTextBoxId = Guid.NewGuid().ToString();
             string testButtonContent = "Test Button Content";
-            ToastActivationType testToastActivationType = ToastActivationType.Background;
+            NotificationActivationType testToastActivationType = NotificationActivationType.Background;
             string testButtonLaunchArgs = "Test Launch Args";
             Uri testImageUriSrc = new Uri("C:/justatesturi.jpg");
 

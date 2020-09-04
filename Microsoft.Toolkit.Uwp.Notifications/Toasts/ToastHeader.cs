@@ -58,12 +58,12 @@ namespace Microsoft.UI.Notifications
             set { ArgumentValidator.SetProperty(ref _arguments, value, nameof(Arguments), ArgumentValidatorOptions.NotNull); }
         }
 
-        private ToastActivationType _activationType = ToastActivationType.Foreground;
+        private NotificationActivationType _activationType = NotificationActivationType.Foreground;
 
         /// <summary>
         /// Gets or sets the type of activation this header will use when clicked. Defaults to Foreground. Note that only Foreground and Protocol are supported.
         /// </summary>
-        public ToastActivationType ActivationType
+        public NotificationActivationType ActivationType
         {
             get
             {
@@ -74,8 +74,8 @@ namespace Microsoft.UI.Notifications
             {
                 switch (value)
                 {
-                    case ToastActivationType.Foreground:
-                    case ToastActivationType.Protocol:
+                    case NotificationActivationType.Foreground:
+                    case NotificationActivationType.Protocol:
                         _activationType = value;
                         break;
 
@@ -94,7 +94,7 @@ namespace Microsoft.UI.Notifications
         {
             if (ActivationOptions != null)
             {
-                if (ActivationOptions.AfterActivationBehavior != ToastAfterActivationBehavior.Default)
+                if (ActivationOptions.AfterActivationBehavior != NotificationAfterActivationBehavior.Default)
                 {
                     throw new InvalidOperationException("ToastHeader does not support a custom AfterActivationBehavior. Please ensure ActivationOptions.AfterActivationBehavior is set to Default.");
                 }

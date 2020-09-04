@@ -10,6 +10,6 @@ namespace Microsoft.UI.Notifications
 
         string ProtocolActivationTargetApplicationPfn { get; set; }
 
-        ToastAfterActivationBehavior AfterActivationBehavior { get; set; }
+        NotificationAfterActivationBehavior AfterActivationBehavior { get; set; }
     }
 }

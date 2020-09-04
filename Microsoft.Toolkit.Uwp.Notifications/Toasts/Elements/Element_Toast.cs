@@ -20,17 +20,17 @@ namespace Microsoft.UI.Notifications
         [NotificationXmlAttribute("protocolActivationTargetApplicationPfn")]
         public string ProtocolActivationTargetApplicationPfn { get; set; }
 
-        [NotificationXmlAttribute("afterActivationBehavior", ToastAfterActivationBehavior.Default)]
-        public ToastAfterActivationBehavior AfterActivationBehavior
+        [NotificationXmlAttribute("afterActivationBehavior", NotificationAfterActivationBehavior.Default)]
+        public NotificationAfterActivationBehavior AfterActivationBehavior
         {
             get
             {
-                return ToastAfterActivationBehavior.Default;
+                return NotificationAfterActivationBehavior.Default;
             }
 
             set
             {
-                if (value != ToastAfterActivationBehavior.Default)
+                if (value != NotificationAfterActivationBehavior.Default)
                 {
                     throw new InvalidOperationException("AfterActivationBehavior on ToastContent only supports the Default value.");
                 }
@@ -65,17 +65,17 @@ namespace Microsoft.UI.Notifications
 
         public IDictionary<string, string> AdditionalProperties { get; set; }
 
-        public static Element_ToastActivationType ConvertActivationType(ToastActivationType publicType)
+        public static Element_ToastActivationType ConvertActivationType(NotificationActivationType publicType)
         {
             switch (publicType)
             {
-                case ToastActivationType.Foreground:
+                case NotificationActivationType.Foreground:
                     return Element_ToastActivationType.Foreground;
 
-                case ToastActivationType.Background:
+                case NotificationActivationType.Background:
                     return Element_ToastActivationType.Background;
 
-                case ToastActivationType.Protocol:
+                case NotificationActivationType.Protocol:
                     return Element_ToastActivationType.Protocol;
 
                 default:

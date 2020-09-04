@@ -3,9 +3,9 @@
 // See the LICENSE file in the project root for more information.
 
 using System;
-using Microsoft.UI.Notifications;
 using Microsoft.Toolkit.Uwp.SampleApp.Common;
 using Microsoft.Toolkit.Uwp.SampleApp.Models;
+using Microsoft.UI.Notifications;
 using NotificationsVisualizerLibrary;
 using Windows.Foundation.Metadata;
 using Windows.System.Profile;
@@ -32,7 +32,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
             NotificationBuilder builder = new NotificationBuilder();
 
             // Include launch string so we know what to open when user clicks toast
-            builder.AddToastActivationInfo("action=viewForecast&zip=98008", ToastActivationType.Foreground);
+            builder.SetLaunchArgs("action=viewForecast&zip=98008", NotificationActivationType.Foreground);
 
             // We'll always have this summary text on our toast notification
             // (it is required that your toast starts with a text element)
@@ -74,13 +74,13 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
             TileContentBuilder builder = new TileContentBuilder();
 
             // Small Tile
-            builder.AddTile(Notifications.TileSize.Small)
-                .SetTextStacking(TileTextStacking.Center, Notifications.TileSize.Small)
+            builder.AddTile(Microsoft.UI.Notifications.TileSize.Small)
+                .SetTextStacking(TileTextStacking.Center, Microsoft.UI.Notifications.TileSize.Small)
                 .AddText("Mon", hintStyle: AdaptiveTextStyle.Body, hintAlign: AdaptiveTextAlign.Center)
                 .AddText("63°", hintStyle: AdaptiveTextStyle.Base, hintAlign: AdaptiveTextAlign.Center);
 
             // Medium Tile
-            builder.AddTile(Notifications.TileSize.Medium)
+            builder.AddTile(Microsoft.UI.Notifications.TileSize.Medium)
                 .AddAdaptiveTileVisualChild(
                     new AdaptiveGroup()
                     {
@@ -89,10 +89,10 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
                             GenerateSubgroup("Mon", "Mostly Cloudy.png", 63, 42),
                             GenerateSubgroup("Tue", "Cloudy.png", 57, 38)
                         }
-                    }, Notifications.TileSize.Medium);
+                    }, Microsoft.UI.Notifications.TileSize.Medium);
 
             // Wide Tile
-            builder.AddTile(Notifications.TileSize.Wide)
+            builder.AddTile(Microsoft.UI.Notifications.TileSize.Wide)
                 .AddAdaptiveTileVisualChild(
                 new AdaptiveGroup()
                 {
@@ -104,10 +104,10 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
                         GenerateSubgroup("Thu", "Sunny.png", 62, 42),
                         GenerateSubgroup("Fri", "Sunny.png", 71, 66)
                     }
-                }, Notifications.TileSize.Wide);
+                }, Microsoft.UI.Notifications.TileSize.Wide);
 
             // Large tile
-            builder.AddTile(Notifications.TileSize.Large, GenerateLargeTileContent());
+            builder.AddTile(Microsoft.UI.Notifications.TileSize.Large, GenerateLargeTileContent());
 
             // Set the base URI for the images, so we don't redundantly specify the entire path
             builder.Content.Visual.BaseUri = new Uri("Assets/NotificationAssets/", UriKind.Relative);
@@ -290,7 +290,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 
         private void PopToast()
         {
-            NotificationManager.CreateToastNotifier().Show(new ToastNotification(_toastContent.GetXml()));
+            NotificationBuilder.FromXmlDocument(_toastContent.GetXml()).Show();
         }
 
         private void Initialize()

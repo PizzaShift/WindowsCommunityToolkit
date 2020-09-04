@@ -46,7 +46,7 @@ namespace Microsoft.UI.Notifications
         /// <summary>
         /// Gets or sets what type of activation this button will use when clicked. Defaults to Foreground.
         /// </summary>
-        public ToastActivationType ActivationType { get; set; } = ToastActivationType.Foreground;
+        public NotificationActivationType ActivationType { get; set; } = NotificationActivationType.Foreground;
 
         /// <summary>
         /// Gets or sets additional options relating to activation of the toast button. New in Creators Update

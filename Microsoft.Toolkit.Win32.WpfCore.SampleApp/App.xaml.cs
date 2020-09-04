@@ -3,6 +3,8 @@
 // See the LICENSE file in the project root for more information.
 
 using System.Windows;
+using Microsoft.ApplicationModel;
+using Microsoft.ApplicationModel.Activation;
 using Microsoft.UI.Notifications;
 
 namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
@@ -14,24 +16,27 @@ namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            // Listen to toast notification activations
-            NotificationManager.OnActivated += this.ToastNotificationManagerCompat_OnActivated;
+            // Listen to activations
+            AppLifecycle.OnActivated += this.AppLifecycle_OnActivated;
 
-            if (!NotificationManager.WasCurrentProcessToastActivated())
+            if (!AppLifecycle.WasCurrentProcessActivated())
             {
                 new MainWindow().Show();
             }
         }
 
-        private void ToastNotificationManagerCompat_OnActivated(ToastNotificationActivatedEventArgsCompat e)
+        private void AppLifecycle_OnActivated(IActivatedEventArgs e)
         {
             Dispatcher.Invoke(() =>
             {
                 OpenWindowIfNeeded();
 
-                var args = e.Argument;
-                var userInputCount = e.UserInput.Count;
-                MessageBox.Show("Activated!");
+                if (e is NotificationActivatedEventArgs notifArgs)
+                {
+                    var args = notifArgs.Argument;
+                    var userInputCount = notifArgs.UserInput.Count;
+                    MessageBox.Show("Activated from notification! Args: " + args);
+                }
             });
         }
 
@@ -53,7 +58,7 @@ namespace Microsoft.Toolkit.Win32.WpfCore.SampleApp
         protected override void OnExit(ExitEventArgs e)
         {
             // If your app has an installer, you should call this when your app is uninstalled. Otherwise, if your app is a "portable app" and you no longer need notifications while the app is closed, you can call this upon exit.
-            NotificationManager.Uninstall();
+            AppLifecycle.Uninstall();
         }
     }
 }

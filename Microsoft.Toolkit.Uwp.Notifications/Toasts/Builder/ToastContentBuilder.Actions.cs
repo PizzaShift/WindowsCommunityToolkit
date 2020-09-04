@@ -53,7 +53,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="arguments">App-defined string of arguments that the app can later retrieve once it is activated when the user clicks the button.</param>
         /// <param name="imageUri">Optional image icon for the button to display (required for buttons adjacent to inputs like quick reply).</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddButton(string content, ToastActivationType activationType, string arguments, Uri imageUri = default(Uri))
+        public NotificationBuilder AddButton(string content, NotificationActivationType activationType, string arguments, Uri imageUri = default(Uri))
         {
             // Add new button
             ToastButton button = new ToastButton(content, arguments)
@@ -96,7 +96,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="arguments">App-defined string of arguments that the app can later retrieve once it is activated when the user clicks the button.</param>
         /// <param name="imageUri">An optional image icon for the button to display (required for buttons adjacent to inputs like quick reply)</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddButton(string textBoxId, string content, ToastActivationType activationType, string arguments, Uri imageUri = default(Uri))
+        public NotificationBuilder AddButton(string textBoxId, string content, NotificationActivationType activationType, string arguments, Uri imageUri = default(Uri))
         {
             // Add new button
             ToastButton button = new ToastButton(content, arguments)

@@ -37,6 +37,11 @@ namespace Microsoft.UI.Notifications
         /// </summary>
         private ToastContent _content;
 
+        /// <summary>
+        /// Gets internal instance of <see cref="ToastContent"/>.
+        /// </summary>
+        public ToastContent Content => _content;
+
 #if WINDOWS_UWP
         private string _tag;
         private string _group;
@@ -119,7 +124,7 @@ namespace Microsoft.UI.Notifications
                 notif.ExpirationTime = _expirationTime;
             }
 
-            reutrn notif;
+            return notif;
         }
 
         /// <summary>
@@ -194,7 +199,7 @@ namespace Microsoft.UI.Notifications
         /// </summary>
         /// <param name="dateTime">Custom Time to be displayed on the toast</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddCustomTimeStamp(DateTime dateTime)
+        public NotificationBuilder SetCustomTimeStamp(DateTime dateTime)
         {
             _content.DisplayTimestamp = dateTime;
 
@@ -209,7 +214,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="arguments">A developer-defined string of arguments that is returned to the app when the user clicks this header.</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
         /// <remarks>More info about toast header: https://docs.microsoft.com/en-us/windows/uwp/design/shell/tiles-and-notifications/toast-headers </remarks>
-        public NotificationBuilder AddHeader(string id, string title, string arguments)
+        public NotificationBuilder SetHeader(string id, string title, string arguments)
         {
             _content.Header = new ToastHeader(id, title, arguments);
 
@@ -222,7 +227,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="launchArgs">Custom app-defined launch arguments to be passed along on toast activation</param>
         /// <param name="activationType">Set the activation type that will be used when the user click on this toast</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddToastActivationInfo(string launchArgs, ToastActivationType activationType = ToastActivationType.Foreground)
+        public NotificationBuilder SetLaunchArgs(string launchArgs, NotificationActivationType activationType = NotificationActivationType.Foreground)
         {
             _content.Launch = launchArgs;
             _content.ActivationType = activationType;
@@ -235,7 +240,7 @@ namespace Microsoft.UI.Notifications
         /// </summary>
         /// <param name="duration">Duration of the toast</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder SetToastDuration(ToastDuration duration)
+        public NotificationBuilder SetDuration(ToastDuration duration)
         {
             _content.Duration = duration;
             return this;
@@ -246,7 +251,7 @@ namespace Microsoft.UI.Notifications
         /// </summary>
         /// <param name="scenario">Scenario to be used for the toast's behavior</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder SetToastScenario(ToastScenario scenario)
+        public NotificationBuilder SetScenario(ToastScenario scenario)
         {
             _content.Scenario = scenario;
             return this;
@@ -259,7 +264,7 @@ namespace Microsoft.UI.Notifications
         /// <param name="loop">Indicating whether sound should repeat as long as the Toast is shown; false to play only once (default).</param>
         /// <param name="silent">Indicating whether sound is muted; false to allow the Toast notification sound to play (default).</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddAudio(Uri src, bool? loop = null, bool? silent = null)
+        public NotificationBuilder SetAudio(Uri src, bool? loop = null, bool? silent = null)
         {
             if (!src.IsFile)
             {
@@ -287,7 +292,7 @@ namespace Microsoft.UI.Notifications
         /// </summary>
         /// <param name="audio">The <see cref="ToastAudio"/> to set.</param>
         /// <returns>The current instance of <see cref="NotificationBuilder"/></returns>
-        public NotificationBuilder AddAudio(ToastAudio audio)
+        public NotificationBuilder SetAudio(ToastAudio audio)
         {
             _content.Audio = audio;
             return this;

@@ -42,7 +42,7 @@ namespace Microsoft.UI.Notifications
         /// <summary>
         /// Event that is triggered when a notification or notification button is clicked. Subscribe to this event in your app's initial startup code.
         /// </summary>
-        public static event OnActivated OnActivated
+        internal static event OnActivated OnActivated
         {
             add
             {
@@ -415,7 +415,7 @@ namespace Microsoft.UI.Notifications
         /// Gets whether the current process was activated due to a toast activation. If so, the OnActivated event will be triggered soon after process launch.
         /// </summary>
         /// <returns>True if the current process was activated due to a toast activation, otherwise false.</returns>
-        public static bool WasCurrentProcessToastActivated()
+        internal static bool WasCurrentProcessToastActivated()
         {
             return Environment.GetCommandLineArgs().Contains(TOAST_ACTIVATED_LAUNCH_ARG);
         }
@@ -581,7 +581,7 @@ namespace Microsoft.UI.Notifications
         /// <summary>
         /// If you're not using MSIX, call this when your app is being uninstalled to properly clean up all notifications and notification-related resources. Note that this must be called from your app's main EXE (the one that you used notifications for) and not a separate uninstall EXE. If called from a MSIX app, this method no-ops.
         /// </summary>
-        public static void Uninstall()
+        internal static void Uninstall()
         {
             if (DesktopBridgeHelpers.IsContainerized())
             {

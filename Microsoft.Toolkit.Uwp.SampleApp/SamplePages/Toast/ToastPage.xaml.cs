@@ -2,21 +2,16 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 // See the LICENSE file in the project root for more information.
 
-using Microsoft.UI.Notifications;
 using Microsoft.Toolkit.Uwp.SampleApp.Common;
-using Microsoft.Toolkit.Uwp.SampleApp.Models;
+using Microsoft.UI.Notifications;
 using NotificationsVisualizerLibrary;
-using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 {
     public sealed partial class ToastPage : Page
     {
-        private ToastContent _toastContent;
-
         public ToastPage()
         {
             InitializeComponent();
@@ -26,10 +21,10 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 #pragma warning disable SA1008 // Parenthesis spacing
 #pragma warning disable SA1117 // Parameters must be on same line or separate lines
 
-        public static ToastContent GenerateToastContent()
+        public static NotificationBuilder GenerateToastContent()
         {
-            var builder = new NotificationBuilder().SetToastScenario(ToastScenario.Reminder)
-                .AddToastActivationInfo("action=viewEvent&eventId=1983", ToastActivationType.Foreground)
+            var builder = new NotificationBuilder().SetScenario(ToastScenario.Reminder)
+                .SetLaunchArgs("action=viewEvent&eventId=1983", NotificationActivationType.Foreground)
                 .AddText("Adaptive Tiles Meeting")
                 .AddText("Conf Room 2001 / Building 135")
                 .AddText("10:00 AM - 10:30 AM")
@@ -41,7 +36,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
                 .AddButton(new ToastButtonSnooze() { SelectionBoxId = "snoozeTime" })
                 .AddButton(new ToastButtonDismiss());
 
-            return builder.Content;
+            return builder;
         }
 
 #pragma warning restore SA1008
@@ -54,13 +49,13 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
 
         private void PopToast()
         {
-            NotificationManager.CreateToastNotifier().Show(new ToastNotification(_toastContent.GetXml()));
+            GenerateToastContent().Show();
         }
 
         private void Initialize()
         {
             // Generate the toast notification content
-            _toastContent = GenerateToastContent();
+            var toastContent = GenerateToastContent();
 
             // Prepare and update preview toast
             PreviewToastReminder.Properties = new PreviewToastProperties()
@@ -69,7 +64,7 @@ namespace Microsoft.Toolkit.Uwp.SampleApp.SamplePages
                 DisplayName = Constants.ApplicationDisplayName,
                 Square44x44Logo = Constants.Square44x44Logo
             };
-            PreviewToastReminder.Initialize(_toastContent.GetXml());
+            PreviewToastReminder.Initialize(toastContent.GetXmlDocument());
         }
     }
 }

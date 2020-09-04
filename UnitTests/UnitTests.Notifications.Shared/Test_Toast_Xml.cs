@@ -33,7 +33,7 @@ namespace UnitTests.Notifications
         {
             var toast = new ToastContent()
             {
-                ActivationType = ToastActivationType.Foreground
+                ActivationType = NotificationActivationType.Foreground
             };
 
             AssertPayload("<toast />", toast);
@@ -44,7 +44,7 @@ namespace UnitTests.Notifications
         {
             var toast = new ToastContent()
             {
-                ActivationType = ToastActivationType.Background
+                ActivationType = NotificationActivationType.Background
             };
 
             AssertPayload("<toast activationType='background' />", toast);
@@ -55,7 +55,7 @@ namespace UnitTests.Notifications
         {
             var toast = new ToastContent()
             {
-                ActivationType = ToastActivationType.Protocol
+                ActivationType = NotificationActivationType.Protocol
             };
 
             AssertPayload("<toast activationType='protocol' />", toast);
@@ -1130,7 +1130,7 @@ namespace UnitTests.Notifications
         {
             ToastButton button = new ToastButton("my content", "myArgs")
             {
-                ActivationType = ToastActivationType.Foreground
+                ActivationType = NotificationActivationType.Foreground
             };
 
             AssertButtonPayload("<action content='my content' arguments='myArgs' />", button);
@@ -1141,7 +1141,7 @@ namespace UnitTests.Notifications
         {
             ToastButton button = new ToastButton("my content", "myArgs")
             {
-                ActivationType = ToastActivationType.Background
+                ActivationType = NotificationActivationType.Background
             };
 
             AssertButtonPayload("<action content='my content' arguments='myArgs' activationType='background' />", button);
@@ -1152,7 +1152,7 @@ namespace UnitTests.Notifications
         {
             ToastButton button = new ToastButton("my content", "myArgs")
             {
-                ActivationType = ToastActivationType.Protocol
+                ActivationType = NotificationActivationType.Protocol
             };
 
             AssertButtonPayload("<action content='my content' arguments='myArgs' activationType='protocol' />", button);
@@ -1321,7 +1321,7 @@ namespace UnitTests.Notifications
         {
             ToastContextMenuItem item = new ToastContextMenuItem("content", "args")
             {
-                ActivationType = ToastActivationType.Foreground
+                ActivationType = NotificationActivationType.Foreground
             };
 
             AssertContextMenuItemPayload("<action placement='contextMenu' content='content' arguments='args'/>", item);
@@ -1332,7 +1332,7 @@ namespace UnitTests.Notifications
         {
             ToastContextMenuItem item = new ToastContextMenuItem("content", "args")
             {
-                ActivationType = ToastActivationType.Background
+                ActivationType = NotificationActivationType.Background
             };
 
             AssertContextMenuItemPayload("<action placement='contextMenu' content='content' arguments='args' activationType='background'/>", item);
@@ -1343,7 +1343,7 @@ namespace UnitTests.Notifications
         {
             ToastContextMenuItem item = new ToastContextMenuItem("content", "args")
             {
-                ActivationType = ToastActivationType.Protocol
+                ActivationType = NotificationActivationType.Protocol
             };
 
             AssertContextMenuItemPayload("<action placement='contextMenu' content='content' arguments='args' activationType='protocol'/>", item);
@@ -1536,7 +1536,7 @@ namespace UnitTests.Notifications
         {
             AssertHeaderPayload("<header id='myId' title='My header' arguments='myArgs' activationType='protocol' />", new ToastHeader("myId", "My header", "myArgs")
             {
-                ActivationType = ToastActivationType.Protocol
+                ActivationType = NotificationActivationType.Protocol
             });
         }
 
@@ -1624,18 +1624,18 @@ namespace UnitTests.Notifications
         [TestMethod]
         public void Test_Toast_Header_ActivationTypes()
         {
-            AssertHeaderActivationType("foreground", ToastActivationType.Foreground);
+            AssertHeaderActivationType("foreground", NotificationActivationType.Foreground);
 
             try
             {
-                AssertHeaderActivationType("background", ToastActivationType.Background);
+                AssertHeaderActivationType("background", NotificationActivationType.Background);
                 throw new Exception("ArgumentException should have been thrown, since activation type of background isn't allowed.");
             }
             catch (ArgumentException)
             {
             }
 
-            AssertHeaderActivationType("protocol", ToastActivationType.Protocol);
+            AssertHeaderActivationType("protocol", NotificationActivationType.Protocol);
         }
 
         [TestMethod]
@@ -1666,10 +1666,10 @@ namespace UnitTests.Notifications
         {
             AssertButtonPayload("<action content='My content' arguments='myArgs' activationType='protocol' afterActivationBehavior='pendingUpdate' protocolActivationTargetApplicationPfn='Microsoft.Settings' />", new ToastButton("My content", "myArgs")
             {
-                ActivationType = ToastActivationType.Protocol,
+                ActivationType = NotificationActivationType.Protocol,
                 ActivationOptions = new ToastActivationOptions()
                 {
-                    AfterActivationBehavior = ToastAfterActivationBehavior.PendingUpdate,
+                    AfterActivationBehavior = NotificationAfterActivationBehavior.PendingUpdate,
                     ProtocolActivationTargetApplicationPfn = "Microsoft.Settings"
                 }
             });
@@ -1677,17 +1677,17 @@ namespace UnitTests.Notifications
             // Empty class should do nothing
             AssertButtonPayload("<action content='My content' arguments='myArgs' activationType='background' />", new ToastButton("My content", "myArgs")
             {
-                ActivationType = ToastActivationType.Background,
+                ActivationType = NotificationActivationType.Background,
                 ActivationOptions = new ToastActivationOptions()
             });
 
             // Default should be ignored
             AssertButtonPayload("<action content='My content' arguments='myArgs' activationType='background' />", new ToastButton("My content", "myArgs")
             {
-                ActivationType = ToastActivationType.Background,
+                ActivationType = NotificationActivationType.Background,
                 ActivationOptions = new ToastActivationOptions()
                 {
-                    AfterActivationBehavior = ToastAfterActivationBehavior.Default
+                    AfterActivationBehavior = NotificationAfterActivationBehavior.Default
                 }
             });
 
@@ -1713,10 +1713,10 @@ namespace UnitTests.Notifications
         {
             ToastContextMenuItem item = new ToastContextMenuItem("My content", "myArgs")
             {
-                ActivationType = ToastActivationType.Protocol,
+                ActivationType = NotificationActivationType.Protocol,
                 ActivationOptions = new ToastActivationOptions()
                 {
-                    AfterActivationBehavior = ToastAfterActivationBehavior.PendingUpdate,
+                    AfterActivationBehavior = NotificationAfterActivationBehavior.PendingUpdate,
                     ProtocolActivationTargetApplicationPfn = "Microsoft.Settings"
                 }
             };
@@ -1729,7 +1729,7 @@ namespace UnitTests.Notifications
             AssertContextMenuItemPayload("<action placement='contextMenu' content='My content' arguments='myArgs' activationType='protocol' />", item);
 
             // Default should be ignored
-            item.ActivationOptions.AfterActivationBehavior = ToastAfterActivationBehavior.Default;
+            item.ActivationOptions.AfterActivationBehavior = NotificationAfterActivationBehavior.Default;
 
             AssertContextMenuItemPayload("<action placement='contextMenu' content='My content' arguments='myArgs' activationType='protocol' />", item);
 
@@ -1756,7 +1756,7 @@ namespace UnitTests.Notifications
             AssertPayload("<toast launch='settings:about' activationType='protocol' protocolActivationTargetApplicationPfn='Microsoft.Settings' />", new ToastContent()
             {
                 Launch = "settings:about",
-                ActivationType = ToastActivationType.Protocol,
+                ActivationType = NotificationActivationType.Protocol,
                 ActivationOptions = new ToastActivationOptions()
                 {
                     ProtocolActivationTargetApplicationPfn = "Microsoft.Settings"
@@ -1767,7 +1767,7 @@ namespace UnitTests.Notifications
             AssertPayload("<toast launch='myArgs' activationType='background' />", new ToastContent()
             {
                 Launch = "myArgs",
-                ActivationType = ToastActivationType.Background,
+                ActivationType = NotificationActivationType.Background,
                 ActivationOptions = new ToastActivationOptions()
             });
 
@@ -1775,10 +1775,10 @@ namespace UnitTests.Notifications
             AssertPayload("<toast launch='myArgs' activationType='background' />", new ToastContent()
             {
                 Launch = "myArgs",
-                ActivationType = ToastActivationType.Background,
+                ActivationType = NotificationActivationType.Background,
                 ActivationOptions = new ToastActivationOptions()
                 {
-                    AfterActivationBehavior = ToastAfterActivationBehavior.Default
+                    AfterActivationBehavior = NotificationAfterActivationBehavior.Default
                 }
             });
 
@@ -1790,7 +1790,7 @@ namespace UnitTests.Notifications
                     Launch = "myArgs",
                     ActivationOptions = new ToastActivationOptions()
                     {
-                        AfterActivationBehavior = ToastAfterActivationBehavior.PendingUpdate
+                        AfterActivationBehavior = NotificationAfterActivationBehavior.PendingUpdate
                     }
                 });
                 Assert.Fail("InvalidOperationException should have been thrown.");
@@ -1821,7 +1821,7 @@ namespace UnitTests.Notifications
         {
             var header = new ToastHeader("myId", "My title", "settings:about")
             {
-                ActivationType = ToastActivationType.Protocol,
+                ActivationType = NotificationActivationType.Protocol,
                 ActivationOptions = new ToastActivationOptions()
                 {
                     ProtocolActivationTargetApplicationPfn = "Microsoft.Settings"
@@ -1835,13 +1835,13 @@ namespace UnitTests.Notifications
             AssertHeaderPayload("<header id='myId' title='My title' arguments='settings:about' activationType='protocol' />", header);
 
             // Default should be ignored
-            header.ActivationOptions.AfterActivationBehavior = ToastAfterActivationBehavior.Default;
+            header.ActivationOptions.AfterActivationBehavior = NotificationAfterActivationBehavior.Default;
             AssertHeaderPayload("<header id='myId' title='My title' arguments='settings:about' activationType='protocol' />", header);
 
             // Using anything other than default should throw exception
             try
             {
-                header.ActivationOptions.AfterActivationBehavior = ToastAfterActivationBehavior.PendingUpdate;
+                header.ActivationOptions.AfterActivationBehavior = NotificationAfterActivationBehavior.PendingUpdate;
                 AssertHeaderPayload("Exception should be thrown", header);
                 Assert.Fail("InvalidOperationException should have been thrown.");
             }
@@ -1852,7 +1852,7 @@ namespace UnitTests.Notifications
             // Specifying protocol PFN without using protocol activation should throw exception
             try
             {
-                header.ActivationType = ToastActivationType.Foreground;
+                header.ActivationType = NotificationActivationType.Foreground;
                 header.ActivationOptions = new ToastActivationOptions()
                 {
                     ProtocolActivationTargetApplicationPfn = "Microsoft.Settings"
@@ -2118,14 +2118,14 @@ namespace UnitTests.Notifications
             });
         }
 
-        private static void AssertHeaderActivationType(string expectedPropertyValue, ToastActivationType activationType)
+        private static void AssertHeaderActivationType(string expectedPropertyValue, NotificationActivationType activationType)
         {
             ToastHeader header = new ToastHeader("myId", "My title", "myArgs")
             {
                 ActivationType = activationType
             };
 
-            if (activationType == ToastActivationType.Foreground)
+            if (activationType == NotificationActivationType.Foreground)
             {
                 AssertHeaderPayload("<header id='myId' title='My title' arguments='myArgs' />", header);
             }
